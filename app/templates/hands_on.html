@@ -1,0 +1,29 @@
+<div class="hands_on">
+    <h2>Project Overview</h2>
+    <p>
+        For this project, we will use only the <strong>t_2m:C</strong> metric, which represents the instantaneous temperature
+        at 2 meters above ground level in degrees Celsius (C). This parameter will help us achieve the following objectives:
+    </p>
+    <ul>
+        <li>List the latest forecast for each location for every day over a 7-day period, with data provided at 3-hour intervals</li>
+        <li>List the average temperature of the last three forecasts for each location for every day</li>
+    </ul>
+
+    <h2>> Find Locations</h2>
+    <p>
+        <a href="{{ url_for('locations') }}">Click here</a> to find all available locations,
+        or proceed to <a href="http://localhost:5000/locations">http://localhost:5000/locations</a>.
+    </p>
+
+    <h2>> List the Latest Forecast</h2>
+    <p>
+        <a href="{{ url_for('latest_forecast') }}">Click here</a> to find all the latest forecast information,
+        or proceed to <a href="http://localhost:5000/latest_forecast">http://localhost:5000/latest_forecast</a>.
+    </p>
+
+    <h2>> List the Average Temperature</h2>
+    <p>
+        <a href="{{ url_for('average_temperature') }}">Click here</a> to find the average temperature,
+        or proceed to <a href="http://localhost:5000/average_temperature">http://localhost:5000/average_temperature</a>.
+    </p>
+</div>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width = device-width, initial-scale = 1.0">
+    <title>Meteomatics API</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/styles.css') }}">
+</head>
+<body>
+<a href="http://127.0.0.1:5000/">Go Back</a>
+<div class="locations">
+    <h2>Locations</h2>
+    <table>
+        <tr>
+            <td class="titles">ID</td>
+            <td class="titles">Name</td>
+        </tr>
+        {% for x in data %}
+        <tr>
+            <td>{{ x[0] }}</td>
+            <td>{{ x[1] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+</body>
+</html>

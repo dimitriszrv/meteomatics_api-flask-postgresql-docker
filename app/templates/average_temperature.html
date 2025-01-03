@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width = device-width, initial-scale = 1.0">
+    <title>Meteomatics API</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/styles.css') }}">
+</head>
+<body>
+<a href="http://127.0.0.1:5000/">Go Back</a>
+<div class="average_temperature">
+    <h2>Average temperature of the last 3 forecasts for each location for every day</h2>
+    <table>
+        <tr>
+            <td class="titles">Name</td>
+            <td class="titles">Date</td>
+            <td class="titles">Average Temperature</td>
+        </tr>
+        {% for x in data %}
+        <tr>
+            <td>{{ x[0] }}</td>
+            <td>{{ x[1] }}</td>
+            <td>{{ x[2] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+</body>
+</html>
