@@ -1,0 +1,50 @@
+services:
+  flask:
+    build: .
+    container_name: flask
+    restart: on-failure:5
+    ports:
+      - 5000:5000
+    volumes:
+      - ./app/database_data:/app/database_data
+    env_file:
+      - app/configs/flask.env
+    depends_on:
+      - postgresql
+
+  postgresql:
+    image: bitnami/postgresql:17.2.0
+    container_name: postgresql
+    restart: on-failure:5
+    ports:
+      - 5435:5432
+    volumes:
+      # postgresql stores its data, which is not lost if container stops or removed
+      - ./postgresql_data:/bitnami/postgresql
+      # init_db.sql creates tables for db
+      - ./app/configs/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
+    env_file:
+      - app/configs/postgresql.env
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "admin", "-d", "meteomatics_api" ]
+      interval: 5s
+      retries: 5
+
+  pgadmin4:
+    image: dpage/pgadmin4:8.14.0
+    container_name: pgadmin4
+    restart: on-failure:5
+    ports:
+      - 5433:80
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    env_file:
+      - app/configs/pgadmin4.env
+    depends_on:
+      postgresql:
+        condition: service_healthy
+
+volumes:
+  postgresql_data:
+  pgadmin_data:
+  flask_app:
